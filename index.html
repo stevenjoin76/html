@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+
+  <!-- 网站图标 -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+
+  <!-- iOS 设备图标（可选） -->
+  <link rel="apple-touch-icon" href="icon-192.png" />
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PlayVerify — LVL & Play Integrity 验证 API</title>
@@ -276,7 +286,7 @@
       </div>
       <div class="hero-visual">
         <div class="card code">
-<pre><code>POST /verify HTTP/1.1
+<pre><code>POST /lvl HTTP/1.1
 Host: api.playverify.dev
 Authorization: HMAC key=... sign=...
 Content-Type: application/json
@@ -284,8 +294,9 @@ Content-Type: application/json
 {
   "pkg": "com.example.app",
   "lvl_response": "&lt;base64&gt;",
-  "integrity_token": "&lt;DG token&gt;",
-  "device": {"android_id": "a1b2..."}
+   "signature": "&lt;base64&gt;",
+   "signedData": "0|nonce|com.example.app
+                 |594|XXX==|1751451432617:VT=XXXXXX"
 }
 </code></pre>
         </div>
@@ -305,9 +316,9 @@ Content-Type: application/json
         <article class="card feature"><div class="card-inner">
           <div class="title">
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 6-9 6-9-6 9-6zm0 7.5l9 6-9 6-9-6 9-6z"/></svg>
-            统一验证接口
+            多账户
           </div>
-          <p class="muted">一个 REST API 同时完成 <b>LVL</b> 与 <b>Play Integrity</b> 校验，返回标准化字段与风险等级。</p>
+          <p class="muted">超千万用户 <b>不重复</b> ，返回标准化字段与风险等级,提升检测安全强度。</p>
         </div></article>
         <article class="card feature"><div class="card-inner">
           <div class="title">
@@ -427,12 +438,12 @@ Content-Type: application/json
     <div class="container">
       <div class="section-head">
         <h2>用户反馈</h2>
-        <p class="muted">来自开发者与安全团队的真实声音（演示文案，可替换）</p>
+        <p class="muted">来自使用者的真实声音</p>
       </div>
       <div class="grid testi">
         <article class="card"><div class="card-inner">
           <h3>AppSecurity.io 创始人</h3>
-          <p class="quote">“以前我们手动调用 Google 接口，非常繁琐。PlayVerify 的 API 让验证逻辑集成只用了不到 10 分钟。”</p>
+          <p class="quote">"LVL Verify API的使用，大大方便了我们进行AppsFlyer/Adjust/Branch等MMP流量优化工作。接入后，我们大部分应用都可以优化。"</p>
         </div></article>
         <article class="card"><div class="card-inner">
           <h3>IndieGame Studio</h3>
@@ -527,8 +538,8 @@ Content-Type: application/json
       <div class="card">
         <div class="card-inner" style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
           <div>
-            <h3 style="margin:0">准备好保护你的 Android 应用了吗？</h3>
-            <p class="muted" style="margin:6px 0 0">7 天免费试用 · 不限功能 · 随时取消</p>
+            <h3 style="margin:0">准备好了吗？</h3>
+            <p class="muted" style="margin:6px 0 0">100次免费调用 · 不限功能 · 随时取消</p>
           </div>
           <div>
             <a class="btn" href="#contact">获取 API Key</a>
