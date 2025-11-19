@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+  <!-- 网站图标 -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+
+  <!-- iOS 设备图标（可选） -->
+  <link rel="apple-touch-icon" href="icon-192.png" />
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PlayVerify — LVL & Play Integrity 验证 API</title>
+  <meta name="description" content="PlayVerify 提供 Google Play LVL 与 Play Integrity 验证 API。即插即用、低延迟、统一风险评分与可视化仪表盘。" />
+  <meta name="keywords" content="LVL verification API, Play Integrity API, Android 安全, 许可证校验, 反破解, 验证 API" />
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --panel:#0f121a;
+      --muted:#9aa4b2;
+      --text:#e8ecf3;
+      --brand:#6ee7ff;
+      --brand-2:#7c5cff;
+      --accent:#1f2937;
+      --ok:#22c55e;
+      --warn:#f59e0b;
+      --danger:#ef4444;
+      --ring: 0 0 0 6px rgba(108,99,255,0.18);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02);
+      --grid-max: 1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(1000px 600px at 10% -15%, rgba(110,231,255,.15), transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--grid-max);margin-inline:auto;padding:0 20px}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      padding:.9rem 1.2rem;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#0b0d12;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+    }
+    .btn:hover{filter:brightness(1.05)}
+    .btn.outline{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.12)
+    }
+    .badge{
+      padding:.2rem .6rem;
+      border-radius:999px;
+      background:linear-gradient(135deg, rgba(124,92,255,.2), rgba(110,231,255,.2));
+      border:1px solid rgba(255,255,255,.15);
+      font-weight:600;
+      color:#dbeafe;
+      display:inline-flex;
+      gap:.4rem;
+      align-items:center
+    }
+    .grid{display:grid;gap:24px}
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow)
+    }
+    .card-inner{padding:24px}
+    header.nav{
+      position:sticky;top:0;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(11,13,18,.6);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      z-index:50
+    }
+    header .wrap{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:14px 0
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900}
+    .brand .logo{
+      width:28px;height:28px;border-radius:8px;
+      background:conic-gradient(from 180deg at 50% 50%, var(--brand), var(--brand-2));
+      box-shadow:0 0 0 4px rgba(124,92,255,.2)
+    }
+    .nav-links{display:flex;gap:16px;align-items:center}
+    .nav-links a{opacity:.85}
+    .nav-links a:hover{opacity:1}
+
+    /* Hero */
+    .hero{padding:72px 0 40px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:28px;
+      align-items:center
+    }
+    .hero h1{
+      font-size: clamp(28px, 5vw, 56px);
+      line-height:1.05;
+      margin:16px 0
+    }
+    .hero p{
+      font-size: clamp(16px, 2.2vw, 18px);
+      color:var(--muted);
+      max-width:720px
+    }
+    .stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:20px}
+    .stat{
+      padding:14px 16px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px
+    }
+    .stat b{font-size:20px}
+    .hero-visual{position:relative}
+    .blob{
+      position:absolute;
+      inset:auto auto -40px -40px;
+      width:180px;height:180px;
+      background:radial-gradient(circle at 30% 30%, rgba(124,92,255,.45), transparent 60%);
+      filter:blur(20px);
+      opacity:.8
+    }
+    .code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background:#0a0c11;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:14px;
+      padding:18px;
+      overflow:auto
+    }
+
+    /* Sections */
+    section{padding:64px 0}
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      margin-bottom:22px
+    }
+    h2{font-size: clamp(22px, 3.4vw, 34px);margin:0}
+    .muted{color:var(--muted)}
+
+    /* Features */
+    .features{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .feature .title{
+      display:flex;align-items:center;gap:10px;
+      font-weight:800;margin-bottom:8px
+    }
+    .icon{width:22px;height:22px;display:inline-block}
+
+    /* Use cases */
+    .usecases{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+    /* Steps */
+    .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .step-num{
+      width:32px;height:32px;border-radius:8px;
+      background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      display:grid;place-items:center;
+      color:#0b0d12;font-weight:900;
+      box-shadow:var(--shadow)
+    }
+
+    /* Testimonials */
+    .testi{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .quote{font-size:15px;color:#dbeafe}
+
+    /* Pricing */
+    .pricing{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .price b{font-size:28px}
+    .price small{color:var(--muted)}
+    .plan{position:relative;overflow:hidden}
+    .plan--pro{
+      border-color:rgba(124,92,255,.45);
+      box-shadow:0 0 0 1px rgba(124,92,255,.25), var(--shadow)
+    }
+    .ribbon{
+      position:absolute;
+      top:16px;right:-36px;
+      transform:rotate(35deg);
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#0b0d12;
+      padding:6px 48px;
+      font-weight:800
+    }
+
+    /* Contact section */
+    .contact-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:24px;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+    .contact-text{
+      max-width:420px;
+    }
+    .contact-form{
+      flex:1;
+      max-width:520px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .contact-textarea{
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(10,12,17,.95);
+      color:var(--text);
+      min-height:130px;
+      resize:vertical;
+    }
+
+    /* Footer */
+    footer{
+      padding:40px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted)
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .features,.usecases,.steps,.testi,.pricing{grid-template-columns:1fr}
+      .section-head{flex-direction:column;align-items:flex-start;gap:10px}
+      .contact-row{flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container wrap">
+      <a class="brand" href="#">
+        <span class="logo"></span>
+        <span>PlayVerify</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">产品特点</a>
+        <a href="#use">使用效果</a>
+        <a href="#pricing">价格</a>
+        <a href="#docs" class="btn outline">查看文档</a>
+        <a href="#contact" class="btn">获取 API Key</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.1L18 20l-6-4-6 4 1.5-6.9L2 9h7z"/></svg>
+          即插即用 · 统一验证 API
+        </span>
+        <h1>Secure, Verify, and Trust Every Android Installation</h1>
+        <p>基于 Google Play <b>LVL</b> 与 <b>Play Integrity</b> 的统一验证服务。通过一个 REST API 完成正版校验、设备完整性检测与风险评分，延迟低于 150ms。</p>
+        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn" href="#contact">申请试用</a>
+          <a class="btn outline" href="#how">工作原理</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>150ms</b><div class="muted">平均响应</div></div>
+          <div class="stat"><b>98.3%</b><div class="muted">虚假请求拦截</div></div>
+          <div class="stat"><b>SLA 99.9%</b><div class="muted">企业可选</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="card code">
+<pre><code>POST /lvl HTTP/1.1
+Host: api.playverify.dev
+Authorization: HMAC key=... sign=...
+Content-Type: application/json
+
+{
+  "pkg": "com.example.app",
+  "lvl_response": "&lt;base64&gt;",
+   "signature": "&lt;base64&gt;",
+   "signedData": "0|nonce|com.example.app
+                 |594|XXX==|1751451432617:VT=XXXXXX"
+}
+</code></pre>
+        </div>
+        <div class="blob" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why Choose PlayVerify</h2>
+        <p class="muted">统一接口 · 风险评分 · 可视化洞察</p>
+      </div>
+      <div class="grid features">
+        <article class="card feature"><div class="card-inner">
+          <div class="title">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 6-9 6-9-6 9-6zm0 7.5l9 6-9 6-9-6 9-6z"/></svg>
+            多账户
+          </div>
+          <p class="muted">超千万用户 <b>不重复</b> ，返回标准化字段与风险等级,提升检测安全强度。</p>
+        </div></article>
+        <article class="card feature"><div class="card-inner">
+          <div class="title">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 5h2v6h-2V7zm1 10a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
+            安全分数输出
+          </div>
+          <p class="muted">内置风险模型，输出 <code>high</code>/<code>medium</code>/<code>low</code>，可直接驱动风控与灰度策略。</p>
+        </div></article>
+        <article class="card feature"><div class="card-inner">
+          <div class="title">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4 7h16v2H4V7zm0 4h10v2H4v-2zm0 4h16v2H4v-2z"/></svg>
+            兼容多环境
+          </div>
+          <p class="muted">识别 AOSP、microG、Root、改机、模拟器与 Hook 注入等异常环境。</p>
+        </div></article>
+        <article class="card feature"><div class="card-inner">
+          <div class="title">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12l7-9v6h11l-7 9v-6H3z"/></svg>
+            低延迟 · 高并发
+          </div>
+          <p class="muted">全球边缘加速与连接池优化，P95 延迟 &lt; 150ms。</p>
+        </div></article>
+        <article class="card feature"><div class="card-inner">
+          <div class="title">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v4H4V4zm0 6h10v10H4V10zm12 6h4v4h-4v-4z"/></svg>
+            日志与仪表盘
+          </div>
+          <p class="muted">在线查看每次验证、趋势与国家/机型分布，支持导出与审计。</p>
+        </div></article>
+        <article class="card feature"><div class="card-inner">
+          <div class="title">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l4 4h-3v6H11V7H8l4-4zM6 17h12v2H6v-2z"/></svg>
+            SDK 与 Webhook
+          </div>
+          <p class="muted">提供 Java / Node / Python SDK 与 Webhook 回调，10 分钟集成。</p>
+        </div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section id="use">
+    <div class="container">
+      <div class="section-head">
+        <h2>使用效果与场景</h2>
+        <p class="muted">覆盖激活、登录、支付等关键链路</p>
+      </div>
+      <div class="grid usecases">
+        <article class="card"><div class="card-inner">
+          <h3>应用正版验证</h3>
+          <p class="muted">拦截盗版 APK 访问激活/资源接口，保护账号系统与计费权益。</p>
+          <div class="stat" style="margin-top:10px"><b>98.3%</b> <span class="muted">盗版请求拦截率</span></div>
+        </div></article>
+        <article class="card"><div class="card-inner">
+          <h3>安全环境检测</h3>
+          <p class="muted">利用 Integrity 信号识别 root、模拟器、改机与注入。</p>
+          <div class="stat" style="margin-top:10px"><b>95.6%</b> <span class="muted">风险设备识别</span></div>
+        </div></article>
+        <article class="card"><div class="card-inner">
+          <h3>支付与激活风控</h3>
+          <p class="muted">在支付前与设备绑定前触发验证，降低欺诈与滥用。</p>
+          <div class="stat" style="margin-top:10px"><b>151ms</b> <span class="muted">平均延迟</span></div>
+        </div></article>
+        <article class="card"><div class="card-inner">
+          <h3>第三方系统集成</h3>
+          <p class="muted">与用户系统、归因/广告平台、风控系统无缝协同。</p>
+          <div class="stat" style="margin-top:10px"><b>10 min</b> <span class="muted">完成首集成</span></div>
+        </div></article>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <div class="card-inner">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+            <div>
+              <b>效果速览</b>
+              <p class="muted">真实项目的示例数据（可替换为你的运营数据）。</p>
+            </div>
+            <div style="display:flex;gap:12px">
+              <span class="stat"><b>–70%</b> <span class="muted">盗版安装</span></span>
+              <span class="stat"><b>+36%</b> <span class="muted">合法留存</span></span>
+              <span class="stat"><b>–41%</b> <span class="muted">作弊退款</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head">
+        <h2>工作原理 · 3 步集成</h2>
+      <p class="muted">Get API Key → 发送 Token → 获取验证结果</p>
+      </div>
+      <div class="grid steps">
+        <div class="card"><div class="card-inner">
+          <div class="step-num">1</div>
+          <h3>获取 API Key</h3>
+          <p class="muted">注册并在控制台创建项目与密钥，启用 LVL / Integrity。</p>
+        </div></div>
+        <div class="card"><div class="card-inner">
+          <div class="step-num">2</div>
+          <h3>发送客户端 Token</h3>
+          <p class="muted">上报 LVL 响应与 Integrity Token（DG），支持签名与回放防御。</p>
+        </div></div>
+        <div class="card"><div class="card-inner">
+          <div class="step-num">3</div>
+          <h3>获取风险评分</h3>
+          <p class="muted">服务端统一返回合法性校验结果与风险等级，并可 Webhook 推送。</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-head">
+        <h2>用户反馈</h2>
+        <p class="muted">来自使用者的真实声音</p>
+      </div>
+      <div class="grid testi">
+        <article class="card"><div class="card-inner">
+          <h3>AppSecurity.io 创始人</h3>
+          <p class="quote">"LVL Verify API的使用，大大方便了我们进行AppsFlyer/Adjust/Branch等MMP流量优化工作。接入后，我们大部分应用都可以优化。"</p>
+        </div></article>
+        <article class="card"><div class="card-inner">
+          <h3>IndieGame Studio</h3>
+          <p class="quote">“游戏盗版安装量下降了近 70%，风险评分帮助我们有效识别模拟器和改包。”</p>
+        </div></article>
+        <article class="card"><div class="card-inner">
+          <h3>AI SDK 团队</h3>
+          <p class="quote">“在 SDK 激活时调用 Integrity 检测，显著减少爬虫与自动化滥用。”</p>
+        </div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <h2>价格方案</h2>
+        <p class="muted">灵活计费 · 适配不同规模</p>
+      </div>
+      <div class="grid pricing">
+        <article class="card plan"><div class="card-inner">
+          <h3>Starter</h3>
+          <p class="price"><b>$49</b> <small>/ 月</small></p>
+          <ul class="muted">
+            <li>50,000 次/月</li>
+            <li>LVL + Integrity 基础校验</li>
+            <li>基础仪表盘</li>
+            <li>超量 $0.001/次</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn outline" href="#contact">申请试用</a>
+          </div>
+        </div></article>
+        <article class="card plan plan--pro"><div class="ribbon">Most Popular</div><div class="card-inner">
+          <h3>Pro</h3>
+          <p class="price"><b>$299</b> <small>/ 月</small></p>
+          <ul class="muted">
+            <li>500,000 次/月</li>
+            <li>高级风险评分与回放防御</li>
+            <li>完整日志存储与导出</li>
+            <li>优先支持</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn" href="#contact">开始使用</a>
+          </div>
+        </div></article>
+        <article class="card plan"><div class="card-inner">
+          <h3>Enterprise</h3>
+          <p class="price"><b>联系我们</b></p>
+          <ul class="muted">
+            <li>专属节点与私有部署</li>
+            <li>定制化合规模块与审计</li>
+            <li>SLA 99.9% 与白手套支持</li>
+            <li>安全评估与渗透测试</li>
+          </ul>
+          <div style="margin-top:14px"><a class="btn outline" href="#contact">预约演示</a></div>
+        </div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="card">
+        <div class="card-inner contact-row">
+          <div class="contact-text">
+            <h2 style="margin-top:0;margin-bottom:6px;">需求描述 / 申请试用</h2>
+            <p class="muted" style="margin-top:0;margin-bottom:14px;">
+              简单描述你的应用场景、目前接入的 SDK（如归因 / 广告 / 反作弊等）以及想评估或优化的方向，我们会通过邮件与你联系。
+            </p>
+          </div>
+          <form action="https://formsubmit.co/stevenjoin76@gmail.com" method="POST" class="contact-form">
+            <input type="hidden" name="_subject" value="试用申请：PlayVerify" />
+            <textarea
+              name="需求描述"
+              class="contact-textarea"
+              placeholder="请简单描述：应用类型、日活规模、接入的 SDK，以及希望我们重点评估的部分"
+              required
+            ></textarea>
+            <button type="submit" class="btn" style="align-self:flex-start;">提交申请</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="get">
+    <div class="container">
+      <div class="card">
+        <div class="card-inner" style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+          <div>
+            <h3 style="margin:0">准备好了吗？</h3>
+            <p class="muted" style="margin:6px 0 0">100次免费调用 · 不限功能 · 随时取消</p>
+          </div>
+          <div>
+            <a class="btn" href="#contact">获取 API Key</a>
+            <a class="btn outline" href="#docs" style="margin-left:10px">查看文档</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+      <div>© <span id="y"></span> PlayVerify · LVL & Play Integrity 验证 API</div>
+      <div style="display:flex;gap:12px">
+        <a class="muted" href="#">隐私政策</a>
+        <a class="muted" href="#">服务条款</a>
+        <a class="muted" href="#">联系我们</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

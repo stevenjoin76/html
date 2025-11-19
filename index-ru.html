@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PlayVerify — LVL & Play Integrity Verification API</title>
+  <title>PlayVerify — API проверки LVL и Play Integrity</title>
 
-  <!-- Multi-language SEO -->
+  <!-- Многоязычный SEO -->
   <link rel="alternate" hreflang="en" href="/index.html">
   <link rel="alternate" hreflang="zh" href="/index-zh.html">
   <link rel="alternate" hreflang="ru" href="/index-ru.html">
 
-  <meta name="description" content="PlayVerify provides unified verification for Google Play LVL and Play Integrity, offering real-time validation, integrity checks, risk scoring, and secure REST APIs." />
-  <meta name="keywords" content="LVL verification API, Play Integrity API, Android security, license validation, anti tampering, device integrity verification, fraud prevention" />
+  <meta name="description" content="PlayVerify предоставляет единый API для проверки Google Play LVL и Play Integrity: проверка лицензии, целостности устройства и расчёт риск-скора в режиме реального времени." />
+  <meta name="keywords" content="Play Integrity API, LVL проверка лицензии, Android безопасность, проверка целостности устройства, антифрод, защита приложений" />
 
-    <style>
+  <style>
     :root{
       --bg:#0b0d12;
       --panel:#0f121a;
@@ -256,7 +256,6 @@
       .section-head{flex-direction:column;align-items:flex-start;gap:10px}
     }
   </style>
-
 </head>
 
 <body>
@@ -269,13 +268,13 @@
       <span>PlayVerify</span>
     </a>
     <nav class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#use">Use Cases</a>
-      <a href="#pricing">Pricing</a>
+      <a href="#features">Возможности</a>
+      <a href="#use">Сценарии</a>
+      <a href="#pricing">Тарифы</a>
 
-      <!-- Language dropdown -->
+      <!-- Языковое меню -->
       <div class="lang-dropdown">
-        <div class="lang-btn">🌐 English ▼</div>
+        <div class="lang-btn">🌐 Русский ▼</div>
         <div class="lang-menu">
           <a href="/index.html">English</a>
           <a href="/index-zh.html">中文</a>
@@ -283,8 +282,8 @@
         </div>
       </div>
 
-      <a href="#docs" class="btn outline">Docs</a>
-      <a href="#get" class="btn">Get API Key</a>
+      <a href="#docs" class="btn outline">Документация</a>
+      <a href="#get" class="btn">Получить API ключ</a>
     </nav>
   </div>
 </header>
@@ -295,26 +294,26 @@
   <div class="container hero-grid">
     <div>
       <span class="badge">
-        Unified Verification API
+        Единый API проверки
       </span>
 
-      <h1>Secure, Verify, and Trust Every Android Installation</h1>
+      <h1>Надёжная проверка каждой установки Android</h1>
 
       <p>
-        A unified verification service based on Google Play <b>LVL</b> and <b>Play Integrity</b>.
-        Through a single REST API, you can perform license validation,
-        device integrity checks, and risk scoring with sub-150ms latency.
+        Единый сервис проверки на основе Google Play <b>LVL</b> и <b>Play Integrity</b>.
+        Один REST API позволяет выполнять проверку лицензии,
+        контроль целостности устройства и расчёт риск-скора с задержкой менее 150 мс.
       </p>
 
       <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn" href="#contact">Start Free Trial</a>
-        <a class="btn outline" href="#how">How It Works</a>
+        <a class="btn" href="#contact">Начать бесплатный тест</a>
+        <a class="btn outline" href="#how">Как это работает</a>
       </div>
 
       <div class="stats">
-        <div class="stat"><b>150ms</b><div class="muted">Avg Response</div></div>
-        <div class="stat"><b>98.3%</b><div class="muted">Fraud Prevention</div></div>
-        <div class="stat"><b>SLA 99.9%</b><div class="muted">Enterprise Ready</div></div>
+        <div class="stat"><b>150ms</b><div class="muted">Средняя задержка</div></div>
+        <div class="stat"><b>98.3%</b><div class="muted">Блокировка мошеннических запросов</div></div>
+        <div class="stat"><b>SLA 99.9%</b><div class="muted">Готово для Enterprise</div></div>
       </div>
     </div>
 
@@ -342,22 +341,23 @@ Content-Type: application/json
 <section id="features">
   <div class="container">
     <div class="section-head">
-      <h2>Why Choose PlayVerify</h2>
-      <p class="muted">Unified API · Risk Scoring · Visual Insights</p>
+      <h2>Почему выбирают PlayVerify</h2>
+      <p class="muted">Единый интерфейс · Оценка рисков · Наглядная аналитика</p>
     </div>
 
     <div class="grid features">
+
       <article class="card feature">
         <div class="card-inner">
           <div class="title">
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 3l9 6-9 6-9-6 9-6zm0 7.5l9 6-9 6-9-6 9-6z"/>
             </svg>
-            Unified Verification API
+            Единый API проверки
           </div>
           <p class="muted">
-            A single REST API validates both <b>LVL</b> and <b>Play Integrity</b>,
-            returning standardized fields and risk-level results.
+            Один REST API для одновременной проверки <b>LVL</b> и <b>Play Integrity</b>,
+            со стандартизированным выводом и оценкой риска.
           </p>
         </div>
       </article>
@@ -368,12 +368,11 @@ Content-Type: application/json
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 5h2v6h-2V7zm1 10a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/>
             </svg>
-            Risk Scoring Output
+            Оценка риска
           </div>
           <p class="muted">
-            Built-in risk evaluation providing <code>high</code>, <code>medium</code>,
-            or <code>low</code> results — suitable for direct integration
-            into risk-control or grayscale strategies.
+            Встроенная система оценки, возвращающая уровни риска:
+            <code>high</code>, <code>medium</code>, <code>low</code>.
           </p>
         </div>
       </article>
@@ -384,11 +383,11 @@ Content-Type: application/json
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M4 7h16v2H4V7zm0 4h10v2H4v-2zm0 4h16v2H4v-2z"/>
             </svg>
-            Multi-Environment Compatibility
+            Поддержка разных сред
           </div>
           <p class="muted">
-            Detect AOSP, microG, rooted devices, modified ROMs,
-            emulators, and injected environments.
+            Определение AOSP, microG, root-доступа, модифицированных прошивок,
+            эмуляторов и окружений с внедрением.
           </p>
         </div>
       </article>
@@ -399,11 +398,11 @@ Content-Type: application/json
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M3 12l7-9v6h11l-7 9v-6H3z"/>
             </svg>
-            Low Latency · High Throughput
+            Низкая задержка · Высокая нагрузка
           </div>
           <p class="muted">
-            Global edge acceleration and optimized connection pooling deliver
-            P95 latency under 150ms.
+            Глобальные CDN-узлы и оптимизация соединений обеспечивают
+            P95 задержку менее 150 мс.
           </p>
         </div>
       </article>
@@ -414,11 +413,11 @@ Content-Type: application/json
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M4 4h16v4H4V4zm0 6h10v10H4V10zm12 6h4v4h-4v-4z"/>
             </svg>
-            Logs & Analytics Dashboard
+            Логи и аналитическая панель
           </div>
           <p class="muted">
-            View each verification event, trends, device models,
-            and country distribution. Export supported.
+            Просматривайте каждую проверку, динамику, распределение по устройствам и странам.
+            Поддерживается экспорт.
           </p>
         </div>
       </article>
@@ -429,14 +428,15 @@ Content-Type: application/json
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 3l4 4h-3v6H11V7H8l4-4zM6 17h12v2H6v-2z"/>
             </svg>
-            SDK & Webhook Integration
+            SDK и Webhook-интеграция
           </div>
           <p class="muted">
-            SDKs available for Java / Node / Python, plus Webhook callbacks.
-            Integration completes in under 10 minutes.
+            SDK для Java / Node / Python и webhook-уведомления.
+            Интеграция занимает менее 10 минут.
           </p>
         </div>
       </article>
+
     </div>
   </div>
 </section>
@@ -447,60 +447,60 @@ Content-Type: application/json
 <section id="use">
   <div class="container">
     <div class="section-head">
-      <h2>Usage Scenarios</h2>
-      <p class="muted">Supports activation, login, payment, and SDK workflows</p>
+      <h2>Сценарии использования</h2>
+      <p class="muted">Поддержка активации, входа, платежей и SDK-процессов</p>
     </div>
 
     <div class="grid usecases">
 
       <article class="card">
         <div class="card-inner">
-          <h3>Legitimate Install Verification</h3>
+          <h3>Проверка легитимных установок</h3>
           <p class="muted">
-            Block pirated APKs from accessing activation or resource endpoints,
-            protecting account systems and billing.
+            Блокировка пиратских APK при попытке доступа к активации или ресурсам,
+            защита аккаунтов и платёжных процессов.
           </p>
           <div class="stat" style="margin-top:10px">
-            <b>98.3%</b> <span class="muted">Pirated Install Interception</span>
+            <b>98.3%</b> <span class="muted">Перехват пиратских установок</span>
           </div>
         </div>
       </article>
 
       <article class="card">
         <div class="card-inner">
-          <h3>Environment & Integrity Detection</h3>
+          <h3>Проверка среды и целостности</h3>
           <p class="muted">
-            Detect root, emulator, device modification, or injection
-            using Integrity signals.
+            Обнаружение root-доступа, эмуляторов, модификаций устройств
+            и внедрения с помощью сигналов Integrity.
           </p>
           <div class="stat" style="margin-top:10px">
-            <b>95.6%</b> <span class="muted">Risk Device Identification</span>
+            <b>95.6%</b> <span class="muted">Определение рискованных устройств</span>
           </div>
         </div>
       </article>
 
       <article class="card">
         <div class="card-inner">
-          <h3>Payment & Activation Risk Control</h3>
+          <h3>Риск-контроль при оплатах и активации</h3>
           <p class="muted">
-            Trigger verification before payment or device binding
-            to reduce fraud and abuse.
+            Выполняйте проверку перед оплатой или привязкой устройства,
+            снижая риск мошенничества.
           </p>
           <div class="stat" style="margin-top:10px">
-            <b>151ms</b> <span class="muted">Avg Latency</span>
+            <b>151ms</b> <span class="muted">Средняя задержка</span>
           </div>
         </div>
       </article>
 
       <article class="card">
         <div class="card-inner">
-          <h3>Third-Party System Integration</h3>
+          <h3>Интеграция со сторонними системами</h3>
           <p class="muted">
-            Works seamlessly with user systems, attribution/advertising platforms,
-            and risk engines.
+            Бесшовно работает с вашими системами пользователей,
+            рекламными/атрибуционными платформами и антифрод-модулями.
           </p>
           <div class="stat" style="margin-top:10px">
-            <b>10 min</b> <span class="muted">Integration Time</span>
+            <b>10 мин</b> <span class="muted">Время интеграции</span>
           </div>
         </div>
       </article>
@@ -511,13 +511,13 @@ Content-Type: application/json
       <div class="card-inner">
         <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
           <div>
-            <b>Effect Overview</b>
-            <p class="muted">Example real-world aggregated data.</p>
+            <b>Сводный эффект</b>
+            <p class="muted">Данные реальных проектов (пример).</p>
           </div>
           <div style="display:flex;gap:12px">
-            <span class="stat"><b>–70%</b> <span class="muted">Pirated Installs</span></span>
-            <span class="stat"><b>+36%</b> <span class="muted">Legitimate Retention</span></span>
-            <span class="stat"><b>–41%</b> <span class="muted">Fraudulent Refunds</span></span>
+            <span class="stat"><b>–70%</b> <span class="muted">Пиратские установки</span></span>
+            <span class="stat"><b>+36%</b> <span class="muted">Удержание легитимных пользователей</span></span>
+            <span class="stat"><b>–41%</b> <span class="muted">Мошеннические возвраты</span></span>
           </div>
         </div>
       </div>
@@ -529,8 +529,8 @@ Content-Type: application/json
 <section id="how">
   <div class="container">
     <div class="section-head">
-      <h2>How It Works</h2>
-      <p class="muted">Get API Key → Send Token → Receive Verification Result</p>
+      <h2>Как это работает</h2>
+      <p class="muted">Получить API ключ → Отправить токены → Получить результат проверки</p>
     </div>
 
     <div class="grid steps">
@@ -538,9 +538,9 @@ Content-Type: application/json
       <div class="card">
         <div class="card-inner">
           <div class="step-num">1</div>
-          <h3>Get API Key</h3>
+          <h3>Получить API ключ</h3>
           <p class="muted">
-            Register in the console, create your project, and enable LVL / Integrity verification.
+            Зарегистрируйтесь, создайте проект и включите проверки LVL / Play Integrity.
           </p>
         </div>
       </div>
@@ -548,9 +548,10 @@ Content-Type: application/json
       <div class="card">
         <div class="card-inner">
           <div class="step-num">2</div>
-          <h3>Send Client Tokens</h3>
+          <h3>Отправить клиентские токены</h3>
           <p class="muted">
-            Submit LVL response and Play Integrity tokens (DG), supporting signature and replay protection.
+            Передайте LVL-ответ и токен Play Integrity (DG).
+            Поддерживается защита от подделки и повторных запросов.
           </p>
         </div>
       </div>
@@ -558,9 +559,10 @@ Content-Type: application/json
       <div class="card">
         <div class="card-inner">
           <div class="step-num">3</div>
-          <h3>Receive Risk Result</h3>
+          <h3>Получить оценку риска</h3>
           <p class="muted">
-            Server returns legality results, integrity evaluations, and risk scores for decision-making.
+            Сервер возвращает результат проверки, оценку целостности
+            и уровень риска для принятия решений.
           </p>
         </div>
       </div>
@@ -575,18 +577,18 @@ Content-Type: application/json
 <section id="testimonials">
   <div class="container">
     <div class="section-head">
-      <h2>User Feedback</h2>
-      <p class="muted">Real feedback from developers and security teams</p>
+      <h2>Отзывы пользователей</h2>
+      <p class="muted">Реальные отзывы разработчиков и команд безопасности</p>
     </div>
 
     <div class="grid testi">
 
       <article class="card">
         <div class="card-inner">
-          <h3>Founder @ AppSecurity.io</h3>
+          <h3>Основатель AppSecurity.io</h3>
           <p class="quote">
-            “Previously we manually called Google's APIs — extremely time-consuming.
-            PlayVerify's unified API let us integrate verification in under 10 minutes.”
+            «Раньше мы вручную вызывали API Google — это занимало массу времени.
+            С PlayVerify интеграция заняла меньше 10 минут.»
           </p>
         </div>
       </article>
@@ -595,18 +597,18 @@ Content-Type: application/json
         <div class="card-inner">
           <h3>Indie Game Studio</h3>
           <p class="quote">
-            “Pirated installations dropped by nearly 70%.
-            Risk scoring helped us effectively identify emulator and tampered devices.”
+            «Количество пиратских установок снизилось почти на 70%.
+            Оценка риска помогла выявить эмуляторы и модифицированные устройства.»
           </p>
         </div>
       </article>
 
       <article class="card">
         <div class="card-inner">
-          <h3>AI SDK Team</h3>
+          <h3>Команда AI SDK</h3>
           <p class="quote">
-            “By calling Integrity verification during SDK activation,
-            automated abuse and scraping were significantly reduced.”
+            «Использование Integrity при активации SDK значительно снизило
+            автоматизированные злоупотребления и скрейпинг.»
           </p>
         </div>
       </article>
@@ -621,8 +623,8 @@ Content-Type: application/json
 <section id="pricing">
   <div class="container">
     <div class="section-head">
-      <h2>Pricing</h2>
-      <p class="muted">Flexible billing · Suitable for teams of all sizes</p>
+      <h2>Тарифы</h2>
+      <p class="muted">Гибкая тарификация · Подходит для проектов любого масштаба</p>
     </div>
 
     <div class="grid pricing">
@@ -632,38 +634,38 @@ Content-Type: application/json
         <div class="card-inner">
           <h3>Starter</h3>
           <p class="price">
-            <b>$49</b> <small>/ month</small>
+            <b>$49</b> <small>/ месяц</small>
           </p>
           <ul class="muted">
-            <li>50,000 requests / month</li>
-            <li>Basic LVL + Integrity verification</li>
-            <li>Basic dashboard</li>
-            <li>Overage: $0.001 / request</li>
+            <li>50 000 запросов / месяц</li>
+            <li>Базовая проверка LVL + Integrity</li>
+            <li>Базовая аналитическая панель</li>
+            <li>Сверхлимит: $0.001 / запрос</li>
           </ul>
 
           <div style="margin-top:14px">
-            <a class="btn outline" href="#contact">Start Free Trial</a>
+            <a class="btn outline" href="#contact">Бесплатный тест</a>
           </div>
         </div>
       </article>
 
       <!-- Pro -->
       <article class="card plan plan--pro">
-        <div class="ribbon">Most Popular</div>
+        <div class="ribbon">Популярный</div>
         <div class="card-inner">
           <h3>Pro</h3>
           <p class="price">
-            <b>$299</b> <small>/ month</small>
+            <b>$299</b> <small>/ месяц</small>
           </p>
           <ul class="muted">
-            <li>500,000 requests / month</li>
-            <li>Advanced risk scoring</li>
-            <li>Full logging & export</li>
-            <li>Priority support</li>
+            <li>500 000 запросов / месяц</li>
+            <li>Расширенная оценка риска</li>
+            <li>Полные логи + экспорт</li>
+            <li>Приоритетная поддержка</li>
           </ul>
 
           <div style="margin-top:14px">
-            <a class="btn" href="#contact">Get Started</a>
+            <a class="btn" href="#contact">Начать сейчас</a>
           </div>
         </div>
       </article>
@@ -672,16 +674,16 @@ Content-Type: application/json
       <article class="card plan">
         <div class="card-inner">
           <h3>Enterprise</h3>
-          <p class="price"><b>Contact Us</b></p>
+          <p class="price"><b>Свяжитесь с нами</b></p>
           <ul class="muted">
-            <li>Dedicated nodes / private deployment</li>
-            <li>Custom compliance modules</li>
-            <li>SLA 99.9% with premium support</li>
-            <li>Security assessment & penetration testing</li>
+            <li>Выделенные узлы / приватное размещение</li>
+            <li>Кастомные модули соответствия</li>
+            <li>SLA 99.9% и премиальная поддержка</li>
+            <li>Аудит безопасности и пентест</li>
           </ul>
 
           <div style="margin-top:14px">
-            <a class="btn outline" href="#contact">Book a Demo</a>
+            <a class="btn outline" href="#contact">Запросить демо</a>
           </div>
         </div>
       </article>
@@ -689,25 +691,25 @@ Content-Type: application/json
     </div>
   </div>
 </section>
-<!-- CONTACT (Message Form Section) -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="card" style="margin-bottom:30px">
       <div class="card-inner">
-        <h2 style="margin-top:0">Leave Your Request</h2>
-        <p class="muted">Describe your needs and we will contact you as soon as possible.</p>
+        <h2 style="margin-top:0">Оставьте ваш запрос</h2>
+        <p class="muted">Опишите вашу потребность — мы свяжемся с вами в ближайшее время.</p>
 
         <form action="https://formsubmit.co/stevenjoin76@gmail.com" method="POST" style="margin-top:20px">
           <textarea
-            name="Requirement Description"
-            placeholder="Please describe your requirement"
+            name="Описание запроса"
+            placeholder="Пожалуйста, опишите ваш запрос"
             required
             style="width:100%;height:120px;padding:12px;border-radius:12px;
                    border:1px solid rgba(255,255,255,.2);
                    background:rgba(255,255,255,.05);
                    color:#e8ecf3;resize:vertical;"></textarea>
 
-          <button type="submit" class="btn" style="margin-top:16px">Submit</button>
+          <button type="submit" class="btn" style="margin-top:16px">Отправить</button>
         </form>
       </div>
     </div>
@@ -722,13 +724,13 @@ Content-Type: application/json
     <div class="card">
       <div class="card-inner" style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
         <div>
-          <h3 style="margin:0">Ready to protect your Android app?</h3>
-          <p class="muted" style="margin:6px 0 0">7-day free trial · All features unlocked · Cancel anytime</p>
+          <h3 style="margin:0">Готовы защитить ваше Android-приложение?</h3>
+          <p class="muted" style="margin:6px 0 0">7 дней бесплатно · Полный доступ · Можно отменить в любой момент</p>
         </div>
 
         <div>
-          <a href="#contact" class="btn">Start Free Trial</a>
-          <a href="#docs" class="btn outline" style="margin-left:10px">View Docs</a>
+          <a href="#contact" class="btn">Начать бесплатный тест</a>
+          <a href="#docs" class="btn outline" style="margin-left:10px">Документация</a>
         </div>
       </div>
     </div>
@@ -741,12 +743,12 @@ Content-Type: application/json
 <footer>
   <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
     <div>
-      © <span id="year"></span> PlayVerify · LVL & Play Integrity Verification API
+      © <span id="year"></span> PlayVerify · API проверки LVL и Play Integrity
     </div>
     <div style="display:flex;gap:12px">
-      <a class="muted" href="#">Privacy Policy</a>
-      <a class="muted" href="#">Terms of Service</a>
-      <a class="muted" href="#contact">Contact Us</a>
+      <a class="muted" href="#">Политика конфиденциальности</a>
+      <a class="muted" href="#">Условия использования</a>
+      <a class="muted" href="#contact">Связаться с нами</a>
     </div>
   </div>
 </footer>
