@@ -565,7 +565,19 @@ Content-Type: application/json
             </p>
           </div>
           <form action="https://formsubmit.co/stevenjoin76@gmail.com" method="POST" class="contact-form">
-            <input type="hidden" name="_subject" value="试用申请：PlayVerify" />
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+          <input type="text" name="name" placeholder="您的称呼" required
+            style="flex:1;min-width:200px;height:42px;padding:10px;border-radius:8px;
+                    border:1px solid rgba(255,255,255,.2);
+                    background:rgba(255,255,255,.05);
+                    color:#e8ecf3;">
+
+          <input type="email" name="email" placeholder="您的邮箱地址" required
+            style="flex:1;min-width:200px;height:42px;padding:10px;border-radius:8px;
+                    border:1px solid rgba(255,255,255,.2);
+                    background:rgba(255,255,255,.05);
+                    color:#e8ecf3;">
+          </div>
             <textarea
               name="需求描述.不要忘记留下Email地址"
               class="contact-textarea"
